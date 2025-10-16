@@ -40,14 +40,15 @@ export default function Hero() {
         {/* Lado derecho: video */}
         <div className='flex-1'>
           <div className='w-full h-64 md:h-80 rounded-2xl overflow-hidden shadow-inner'>
-            <video
-              src='src/videos/video-1.mp4' // asegúrate de que el archivo esté en public/videos/
+          <video
+              src='/videos/video-1.mp4'
               autoPlay
               loop
               muted
               playsInline
-              className='w-full h-full object-cover'
-            />
+             className='w-full h-full object-cover'
+          />
+
           </div>
         </div>
       </div>
