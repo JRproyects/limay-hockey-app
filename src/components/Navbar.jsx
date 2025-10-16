@@ -7,10 +7,10 @@ export default function Navbar() {
         <div className='flex items-center gap-3'>
          <div className='w-12 h-12'>
   <img
-    src='Public/fotos/logo.jpg' // Cambia esto por la ruta de tu imagen
-    alt='Logo Club Limay'
-    className='w-full h-full object-cover rounded-full'
-  />
+  src='fotos/logo.jpg'
+  alt='Logo Club Limay'
+  className='w-full h-full object-cover rounded-full'
+/>
 </div>
 
           <div>
