@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom globals */
+body {
+  @apply bg-lightBlue text-deepBlue min-h-screen antialiased;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Poppins', 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+.btn-primary {
+  @apply bg-aqua text-white px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition;
+}
