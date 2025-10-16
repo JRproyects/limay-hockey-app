@@ -23,8 +23,9 @@ jobs:
 
       - name: Build the app
         run: |
-          rm -rf dist
+          npx rimraf dist
           npm run build
+
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v6
