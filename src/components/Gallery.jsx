@@ -3,12 +3,12 @@ import React from 'react'
 export default function Gallery() {
   // Podés reemplazar estos nombres por tus propias imágenes
 const images = [
-  '/fotos/f-1.jpg',
-  '/fotos/f-2.webp',
-  '/fotos/f-3.webp',
-  '/fotos/f-4.webp',
-  '/fotos/f-5.webp',
-  '/fotos/f-6.jpg'
+  './fotos/f-1.jpg',
+  './fotos/f-2.webp',
+  './fotos/f-3.webp',
+  './fotos/f-4.webp',
+  './fotos/f-5.webp',
+  './fotos/f-6.jpg'
 ];
 
 
