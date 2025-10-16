@@ -41,12 +41,8 @@ export default function Hero() {
         <div className='flex-1'>
           <div className='w-full h-64 md:h-80 rounded-2xl overflow-hidden shadow-inner'>
           <video
-              src='/videos/video-1.mp4'
-              autoPlay
-              loop
-              muted
-              playsInline
-             className='w-full h-full object-cover'
+              src='/limay-hockey-app/videos/video-1.mp4' autoPlay loop muted playsInline className='w-full h-full object-cover'
+          
           />
 
           </div>
