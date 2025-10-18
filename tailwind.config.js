@@ -1,6 +1,7 @@
 // tailwind.config.js
 module.exports = {
   content: ['./index.html', './src/**/*.{js,jsx}'],
+  safelist: ['wave', 'bubbles'], 
   theme: {
     extend: {
       colors: {
@@ -12,3 +13,4 @@ module.exports = {
   },
   plugins: [],
 }
+
