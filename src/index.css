@@ -11,12 +11,14 @@ body {
 .btn-primary {
   @apply bg-aqua text-white px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition;
 }
-/*  Efecto wave */
-.wave {
+/* Aseguramos que el contenedor cree su propio contexto de apilamiento */
+.wave, .bubbles {
   position: relative;
   overflow: hidden;
+  isolation: isolate; /* importante para que z-index negativas funcionen dentro del elemento */
 }
 
+/* WAVE */
 .wave::before {
   content: "";
   position: absolute;
@@ -24,26 +26,19 @@ body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at 50% 50%, rgba(0, 180, 255, 0.15), transparent 70%);
+  background: radial-gradient(circle at 50% 50%, rgba(0, 180, 255, 0.18), transparent 70%);
   animation: waveMove 8s linear infinite;
-  z-index: 0;
+  z-index: -1; /* <- poner detrás del contenido */
+  pointer-events: none;
+  filter: blur(6px);
 }
 
-@keyframes waveMove {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
+/* si querés probar más visible temporalmente */
+.wave.test-visible::before {
+  background: radial-gradient(circle at 50% 50%, rgba(0, 150, 255, 0.35), transparent 60%);
 }
 
-/* 💭 Efecto bubbles */
-.bubbles {
-  position: relative;
-  overflow: hidden;
-}
-
+/* BUBBLES */
 .bubbles::before,
 .bubbles::after {
   content: "";
@@ -51,25 +46,27 @@ body {
   width: 200%;
   height: 200%;
   background:
-    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.15) 0%, transparent 70%),
-    radial-gradient(circle at 80% 20%, rgba(173, 216, 230, 0.15) 0%, transparent 70%),
-    radial-gradient(circle at 50% 50%, rgba(0, 200, 255, 0.1) 0%, transparent 70%);
+    radial-gradient(circle at 20% 80%, rgba(255,255,255,0.18) 0%, transparent 70%),
+    radial-gradient(circle at 80% 20%, rgba(0,150,255,0.14) 0%, transparent 70%),
+    radial-gradient(circle at 50% 50%, rgba(0, 200, 255, 0.10) 0%, transparent 70%);
   animation: bubbleFloat 12s ease-in-out infinite;
-  z-index: 0;
+  z-index: -1; /* <- detrás del contenido */
+  pointer-events: none;
+  filter: blur(3px);
+}
+
+@keyframes waveMove {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 @keyframes bubbleFloat {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-25px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-25px); }
 }
 
-/* Asegurar que el texto siempre quede arriba del efecto */
-.wave > *,
-.bubbles > * {
+/* asegurar el contenido arriba */
+.wave > *, .bubbles > * {
   position: relative;
   z-index: 10;
 }
