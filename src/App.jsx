@@ -6,77 +6,41 @@ import Gallery from './components/Gallery'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 import content from './content'
-import { motion } from 'framer-motion'
 
-export default function Section({ title, children, id, effect }) {
+export default function App() {
+  const sections = [
+    { title: '¿Qué es el Hockey Subacuático?', id: 'que-es', content: <p className='text-lg leading-relaxed'>{content.whatIs}</p> },
+    { title: 'Historia del Club', id: 'historia', content: <p className='text-lg leading-relaxed'>{content.history}</p> },
+    { title: 'Entrenamientos y horarios', id: 'entrenamientos', content: (
+        <ul className='list-disc ml-6 mt-4 space-y-2'>
+          {content.schedule.map((s, i) => <li key={i}>{s}</li>)}
+        </ul>
+      )},
+    { title: 'Equipos y categorías', id: 'equipos', content: <p className='text-lg leading-relaxed'>{content.teams}</p> },
+    { title: 'Cómo sumarse', id: 'sumarse', content: <p className='text-lg leading-relaxed'>{content.howToJoin}</p> },
+  ]
+
   return (
-    <motion.section
-      id={id}
-      className="relative bg-white rounded-2xl p-6 shadow-lg overflow-hidden"
-      initial={{ y: 0 }}
-      animate={effect === 'wave' ? { y: [0, -5, 0] } : {}}
-      transition={effect === 'wave' ? { duration: 4, repeat: Infinity, ease: 'easeInOut' } : {}}
-    >
-      {/* Título */}
-      <h2 className="text-2xl font-bold mb-4">{title}</h2>
-
-      {/* Contenido */}
-      <div className="text-gray-700">{children}</div>
-
-      {/* Animaciones decorativas */}
-      {effect === 'bubbles' && (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(8)].map((_, i) => {
-            const size = Math.random() * 12 + 6
-            const left = Math.random() * 100
-            const duration = Math.random() * 8 + 6
-            const delay = Math.random() * 3
-            const xMovement = Math.random() * 20 - 10
-            const opacity = Math.random() * 0.3 + 0.2
-
-            return (
-              <motion.div
-                key={i}
-                className="absolute bg-blue-200 rounded-full"
-                style={{
-                  width: size,
-                  height: size,
-                  left: `${left}%`,
-                  bottom: '-10px',
-                  opacity: opacity,
-                }}
-                animate={{
-                  y: ['0%', '-120%', '-100%'],
-                  x: [0, xMovement, 0],
-                  opacity: [opacity, opacity + 0.2, 0],
-                }}
-                transition={{
-                  duration: duration,
-                  repeat: Infinity,
-                  delay: delay,
-                  ease: 'easeInOut',
-                }}
-              />
-            )
-          })}
+    <div className='flex flex-col min-h-screen'>
+      <Navbar />
+      <main className='flex-1'>
+        <Hero />
+        <div className='container mx-auto px-4 space-y-12 py-12'>
+          {sections.map((s, i) => (
+            <Section 
+              key={i}
+              title={s.title}
+              id={s.id}
+              effect={i % 2 === 0 ? 'wave' : 'bubbles'} // 1,3,5 → wave / 2,4 → bubbles
+            >
+              {s.content}
+            </Section>
+          ))}
+          <Gallery />
         </div>
-      )}
-      {effect === 'wave' && (
-        <motion.div
-          className="absolute inset-0 pointer-events-none"
-          animate={{ y: [0, 5, 0] }} // movimiento de ola más sutil
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          <svg className="w-full h-full" viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M0,40 C300,120 900,0 1440,40 L1440 100 L0 100 Z"
-              fill="#00bfff"
-              opacity="0.12"
-            />
-          </svg>
-        </motion.div>
-      )}
-    </motion.section>
+      </main>
+      <Footer />
+      <WhatsAppButton phone='+5491135801010' message='Hola!%20Quisiera%20informaci%C3%B3n%20sobre%20Limay%20Hockey%20Subacu%C3%A1tico.%20' />
+    </div>
   )
-}
 }
