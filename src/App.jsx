@@ -1,4 +1,11 @@
 import React from 'react'
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import Section from './components/Section'
+import Gallery from './components/Gallery'
+import Footer from './components/Footer'
+import WhatsAppButton from './components/WhatsAppButton'
+import content from './content'
 import { motion } from 'framer-motion'
 
 export default function Section({ title, children, id, effect }) {
@@ -71,4 +78,5 @@ export default function Section({ title, children, id, effect }) {
       )}
     </motion.section>
   )
+}
 }
