@@ -52,12 +52,12 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* 🌊 Olas animadas */}
+      {/* 🌊 Olas animadas suavemente */}
       <motion.svg
         className='absolute bottom-0 left-0 w-full'
         viewBox='0 0 1440 100'
         xmlns='http://www.w3.org/2000/svg'
-        animate={{ x: [0, -80, 0] }}
+        animate={{ y: [0, -10, 0] }}  // mueve la ola arriba y abajo
         transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
       >
         <path
@@ -67,31 +67,39 @@ export default function Hero() {
         />
       </motion.svg>
 
-      {/* 🫧 Burbujas en el hero */}
+      {/* 🫧 Burbujas dinámicas */}
       <div className='absolute inset-0 overflow-hidden pointer-events-none'>
-        {[...Array(10)].map((_, i) => (
-          <motion.div
-            key={i}
-            className='absolute bg-white rounded-full opacity-20'
-            style={{
-              width: Math.random() * 15 + 5,
-              height: Math.random() * 15 + 5,
-              left: `${Math.random() * 100}%`,
-              bottom: '-20px',
-            }}
-            animate={{
-              y: ['0%', '-120vh'],
-              x: [0, Math.random() * 40 - 20],
-              opacity: [0.2, 0.5, 0],
-            }}
-            transition={{
-              duration: Math.random() * 8 + 5,
-              repeat: Infinity,
-              delay: Math.random() * 3,
-              ease: 'easeInOut',
-            }}
-          />
-        ))}
+        {[...Array(12)].map((_, i) => {
+          const size = Math.random() * 15 + 5
+          const left = Math.random() * 100
+          const duration = Math.random() * 8 + 6
+          const delay = Math.random() * 3
+          const xMovement = Math.random() * 40 - 20
+
+          return (
+            <motion.div
+              key={i}
+              className='absolute bg-white rounded-full opacity-30'
+              style={{
+                width: size,
+                height: size,
+                left: `${left}%`,
+                bottom: '-20px',
+              }}
+              animate={{
+                y: ['0%', '-120vh', '-100vh'],  // sube y rebota un poquito
+                x: [0, xMovement, 0],           // movimiento horizontal suave
+                opacity: [0.3, 0.6, 0],
+              }}
+              transition={{
+                duration: duration,
+                repeat: Infinity,
+                delay: delay,
+                ease: 'easeInOut',
+              }}
+            />
+          )
+        })}
       </div>
     </section>
   )
