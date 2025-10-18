@@ -3,17 +3,14 @@ import { motion } from 'framer-motion'
 
 export default function Section({ title, children, id, effect }) {
   return (
-    <motion.section
+    <section
       id={id}
       className="relative p-8 rounded-2xl overflow-hidden bg-white/80 backdrop-blur-sm shadow-md"
-      initial={{ y: 0 }}
-      animate={effect === 'wave' ? { y: [0, -5, 0] } : {}}
-      transition={effect === 'wave' ? { duration: 4, repeat: Infinity, ease: 'easeInOut' } : {}}
     >
-      {/* Animaciones decorativas */}
+      {/* 🌊 Área decorativa: solo 50% del contenedor */}
       {effect === 'wave' && (
         <motion.div
-          className="absolute inset-0 pointer-events-none"
+          className="absolute bottom-0 left-0 w-full h-1/2 pointer-events-none"
           animate={{ y: [0, 5, 0] }} // ola sube y baja suavemente
           transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
         >
@@ -28,7 +25,7 @@ export default function Section({ title, children, id, effect }) {
       )}
 
       {effect === 'bubbles' && (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute bottom-0 left-0 w-full h-1/2 pointer-events-none overflow-hidden">
           {[...Array(8)].map((_, i) => {
             const size = Math.random() * 12 + 6
             const left = Math.random() * 100
@@ -65,11 +62,11 @@ export default function Section({ title, children, id, effect }) {
         </div>
       )}
 
-      {/* Contenido */}
+      {/* Contenido siempre estable */}
       <div className="relative z-10">
         <h2 className="text-2xl font-bold mb-4 text-deepBlue text-center">{title}</h2>
         <div className="text-gray-800">{children}</div>
       </div>
-    </motion.section>
+    </section>
   )
 }
