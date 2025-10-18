@@ -14,7 +14,7 @@ export default function Hero() {
             transition={{ delay: 0.1 }}
             className='text-4xl md:text-5xl font-extrabold'
           >
-            Club Limay
+             Limay Hockey SubAcuatico
             <span className='text-aqua ml-2'>Hockey Subacuático</span>
           </motion.h2>
 

@@ -14,7 +14,7 @@ export default function Navbar() {
 </div>
 
           <div>
-            <h1 className='text-xl font-semibold'>Club Limay</h1>
+            <h1 className='text-xl font-semibold'>Limay Hockey Subacuático</h1>
             <p className='text-sm -mt-1'>Hockey Subacuático</p>
           </div>
         </div>
